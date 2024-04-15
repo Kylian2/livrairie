@@ -31,8 +31,6 @@ const verifieRequete = () => {
 }
 
 const connexion = async () => {
-    console.log(email.value)
-    console.log(password.value)
     await $fetch('http://localhost:3333/login', {
         method: 'POST',
         body: {
@@ -40,15 +38,10 @@ const connexion = async () => {
             'password': password.value,
         }
     }).then((response)=>{
-        console.log(response)
         if(response !== undefined){
-            console.log("coucou")
-            console.log(response['token'])
             localStorage.setItem('token', response['token'])
             navigateTo('/meslivres')
         }else{
-            console.log("bonjour")
-
             localStorage.removeItem('token')
         }
     }).catch((error) => {

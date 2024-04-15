@@ -10,10 +10,10 @@
 import { getToken } from '~/composable/token';
 
 definePageMeta({
-    middleware: ["auth", "redirect"]
+    middleware: ["auth"]
 })
 
-let books;
+let books: Array<Object>;
 
 if(process.client){
 
@@ -26,7 +26,6 @@ if(process.client){
         }
     }).then((response) => {
         books = response
-        console.log(books)
     })
 
 }

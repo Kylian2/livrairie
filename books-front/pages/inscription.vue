@@ -24,8 +24,6 @@ let password : Ref<string> = useState('password', () => '');
 let lastname : Ref<string> = useState('lastname', () => '');
 let firstname : Ref<string> = useState('firstname', () => '');
 
-let emailInvalide : Ref<Boolean> = useState('emailInvalide', () => false);
-
 function isEmail(str: string): boolean {
   // Expression régulière pour vérifier le format d'une adresse e-mail
   const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -53,7 +51,6 @@ const connexion = async () => {
         navigateTo('/connexion')
     }).catch((error) => {
         console.log(error)
-        emailInvalide = true;
     })
     
 }
