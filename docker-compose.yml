@@ -1,0 +1,25 @@
+version: "3.1" #Numero de version
+
+services: #Les differents services
+  db: #On crée un service de base de données
+    image: mariadb:10.3 #On utilise mariadb
+    container_name: dbauth #Le nom de conteneur
+    restart: always #Permet de définir 
+    #si l'on souhaite un redémarrage à chaque fois que l'on relance le conteneur 
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+    - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root #Le mot de passe pour se connecter à l'utilisateur root
+    volumes:
+      - dbdata:/var/lib/mysql #Crée un volume à l'interieur de docker desktop.
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8888:80 #Par defaut le port est le 8080 mais le 8080 est également utilisé par Adonis -> Attention à ne pas laiser par défaut
+    environment:
+      - PMA_ARBITRARY=1
+volumes:
+  dbdata: #Viendra accueillir les données de la base
