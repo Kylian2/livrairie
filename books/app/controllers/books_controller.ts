@@ -5,16 +5,15 @@ export default class BooksController {
   /**
    * Display a list of resource
    */
-  async index({}: HttpContext) {
-    return Book.query()
+  async index({ auth }: HttpContext) {
+    const user = auth.getUserOrFail()
+    const id = user.id
+    const books = Book.query()
       .preload('user', (u) => u.select('id', 'firstname', 'lastname')) //permet d'inclure à l'emplacement ou l'on fait réference à un user l'objet user.
       .preload('categories')
+      .where('user_id', id)
+    return books
   }
-
-  /**
-   * Display form to create a new record
-   */
-  async create({}: HttpContext) {}
 
   /**
    * Handle form submission for the create action
