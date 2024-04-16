@@ -2,7 +2,7 @@
     <HeaderLog/>
     <h1 class="text-3xl font-bold my-12 mx-20">Ma Collection</h1>
     <div class="flex gap-8 mx-auto flex-wrap w-10/12 justify-center">
-        <Book v-if="books !== null" v-for="book in books" :key="book.id" :book="book"/>
+        <Book v-if="books" v-for="book in books" :key="book.id" :book="book"/>
     </div>
 </template>
 <script setup lang="ts">
