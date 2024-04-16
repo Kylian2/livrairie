@@ -44,7 +44,7 @@ export default class BooksController {
         bookId: book.id,
         categorieId: idCategorie,
       })
-      return 'Le livre a bien été ajouté'
+      return true
     }
     return 'Une erreur est survenue'
   }

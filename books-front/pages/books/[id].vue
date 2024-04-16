@@ -5,7 +5,7 @@
             <h1 class="text-3xl font-bold mb-12 mx-20">{{book.title}}</h1>
             <div class="flex gap-12">
                 <div class="w-96 overflow-hidden">
-                    <img :src="`${book.cover}`" alt="cover" class="h-full">
+                    <img :src="`${book.cover}`" alt="cover">
                 </div>
                 <div class="flex flex-col gap-10">
                     <p class="text-xl"><span class="font-semibold">Auteur :</span> <span> {{ book.author }}</span></p>
