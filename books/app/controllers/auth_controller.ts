@@ -29,7 +29,6 @@ export default class AuthController {
   }
 
   async checklogged({ auth }: HttpContext) {
-    console.log(await auth.check())
     return await auth.check()
   }
 }
