@@ -1,4 +1,7 @@
 import Book from '#models/book'
+import BookCategorie from '#models/book_categorie'
+import Category from '#models/category'
+import { bookValidator } from '#validators/book_category'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class BooksController {
@@ -18,7 +21,33 @@ export default class BooksController {
   /**
    * Handle form submission for the create action
    */
-  async store({ request }: HttpContext) {}
+  async store({ request, auth }: HttpContext) {
+    const user = auth.getUserOrFail()
+    const id = user.id
+
+    const categorie = request.body().categorie
+
+    let book = new Book()
+    const payrol = await request.validateUsing(bookValidator)
+    book.merge({
+      userId: id,
+      ...payrol,
+    })
+    book = await book.save()
+    const categorieQueryResult = Category.query().select('id').where('name', categorie)
+    let idCategorie: number
+
+    if (categorieQueryResult !== undefined) {
+      idCategorie = (await categorieQueryResult).at(0).id
+      let bookCategory = new BookCategorie()
+      bookCategory.merge({
+        bookId: book.id,
+        categorieId: idCategorie,
+      })
+      return 'Le livre a bien été ajouté'
+    }
+    return 'Une erreur est survenue'
+  }
 
   /**
    * Show individual record

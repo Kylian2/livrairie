@@ -34,3 +34,8 @@ const Book = () => import('#controllers/books_controller')
 
 router.get('books', [Book, 'index']).use(middleware.auth())
 router.get('books/:id', [Book, 'show']).use(middleware.auth())
+router.post('books/ajout', [Book, 'store']).use(middleware.auth())
+
+const Category = () => import('#controllers/categories_controller')
+
+router.get('categories', [Category, 'index'])

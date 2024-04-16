@@ -3,7 +3,7 @@
         <NuxtLink to="/">Livrairie</NuxtLink>
         <div class="flex justify-between items-center gap-5">
             <NuxtLink to="/meslivres">Mes livres</NuxtLink> 
-            <NuxtLink>Ajouter un livre</NuxtLink> 
+            <NuxtLink to="/ajout">Ajouter un livre</NuxtLink> 
             <NuxtLink>A propos</NuxtLink> 
         </div>
         <div class="flex justify-between items-center gap-5">
