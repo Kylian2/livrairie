@@ -39,6 +39,8 @@ if(process.client){
     }).then((response) => {
         if(typeof response === "object" && response !== null){
             book = response[0]
+        }else if(response === 'false'){
+            navigateTo('/introuvable')
         }
     })
 

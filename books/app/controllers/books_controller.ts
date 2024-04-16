@@ -23,12 +23,19 @@ export default class BooksController {
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) {
-    const book = Book.query()
+  async show({ auth, params }: HttpContext) {
+    const user = auth.getUserOrFail()
+    const id = user.id
+    const book = await Book.query()
       .preload('user', (u) => u.select('id', 'firstname', 'lastname')) //permet d'inclure à l'emplacement ou l'on fait réference à un user l'objet user.
       .preload('categories')
       .where('id', params.id)
-    return book
+      .where('user_id', id)
+    if (book.length > 0) {
+      return book
+    } else {
+      return false
+    }
   }
 
   /**
