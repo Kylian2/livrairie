@@ -1,4 +1,3 @@
-import { BookCategorieFactory } from '#database/factories/book_categorie_factory'
 import { BookFactory } from '#database/factories/book_factory'
 import { UserFactory } from '#database/factories/user_factory'
 import BookCategorie from '#models/book_categorie'
@@ -7,7 +6,7 @@ import { BaseSeeder } from '@adonisjs/lucid/seeders'
 
 export default class extends BaseSeeder {
   async run() {
-    const users = await UserFactory.createMany(6)
+    await UserFactory.createMany(6)
     await Category.createMany([
       { name: 'Littérature' },
       { name: 'Fantasy' },
@@ -30,7 +29,7 @@ export default class extends BaseSeeder {
       { name: 'Horreur' },
       { name: 'Humour' },
     ])
-    const books = await BookFactory.createMany(50)
+    await BookFactory.createMany(50)
     await BookCategorie.createMany([
       { bookId: 1, categorieId: 5 },
       { bookId: 2, categorieId: 12 },

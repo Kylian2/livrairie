@@ -5,7 +5,6 @@ import { bookValidator } from '#validators/book_category'
 import type { HttpContext } from '@adonisjs/core/http'
 
 import db from '@adonisjs/lucid/services/db'
-import { error } from 'node:console'
 
 export default class BooksController {
   /**
@@ -38,10 +37,10 @@ export default class BooksController {
     })
     book = await book.save()
     const categorieQueryResult = Category.query().select('id').where('name', categorie)
-    let idCategorie: number
+    let idCategorie: number | undefined
 
     if (categorieQueryResult !== undefined) {
-      idCategorie = (await categorieQueryResult).at(0).id
+      idCategorie = (await categorieQueryResult)?.at(0)?.id
       let bookCategory = new BookCategorie()
       bookCategory.merge({
         bookId: book.id,
@@ -87,7 +86,7 @@ export default class BooksController {
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request }: HttpContext) {}
+  async update({}: HttpContext) {}
 
   /**
    * Delete record

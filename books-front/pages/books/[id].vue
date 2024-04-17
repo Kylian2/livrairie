@@ -27,7 +27,12 @@ definePageMeta({
 
 const route = useRoute();
 
-let book: object;
+let book: {
+    title:string,
+    cover:string,
+    resume:string,
+    author:string,
+    };
 let categories: Array<string> = []
 let token : string | null = null;
 if(process.client){

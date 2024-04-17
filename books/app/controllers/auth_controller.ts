@@ -17,7 +17,7 @@ export default class AuthController {
     return token
   }
 
-  async deconnexion({ auth, request, response }: HttpContext) {
+  async deconnexion({ auth, response }: HttpContext) {
     console.log(auth.check())
     const user = auth.getUserOrFail()
     const token = auth.user?.currentAccessToken.identifier
