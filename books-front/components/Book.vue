@@ -1,5 +1,5 @@
 <template>
-    <div class="border-2 border-gray-950 w-72 flex flex-col p-2">
+    <div class="border-2 border-gray-950 w-72 flex flex-col justify-between p-2">
         <img :src="`${$attrs.book.cover}`" alt="book-cover">
         <div class="my-2">
             <h3 class="text-xl font-medium">{{$attrs.book.title}}</h3>
