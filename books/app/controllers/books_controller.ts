@@ -5,6 +5,7 @@ import { bookValidator } from '#validators/book_category'
 import type { HttpContext } from '@adonisjs/core/http'
 
 import db from '@adonisjs/lucid/services/db'
+import { error } from 'node:console'
 
 export default class BooksController {
   /**
@@ -46,7 +47,6 @@ export default class BooksController {
         bookId: book.id,
         categorieId: idCategorie,
       })
-      console.log(bookCategory)
       await bookCategory.save()
       return true
     }
@@ -82,7 +82,7 @@ export default class BooksController {
   /**
    * Edit individual record
    */
-  async edit({ params }: HttpContext) {}
+  async edit({}: HttpContext) {}
 
   /**
    * Handle form submission for the edit action
@@ -92,5 +92,12 @@ export default class BooksController {
   /**
    * Delete record
    */
-  async destroy({ params }: HttpContext) {}
+  async destroy({ params }: HttpContext) {
+    const book = await Book.findOrFail(params.id)
+    book.delete().then(() => {
+      console.log('Fini')
+      return true
+    })
+    return false
+  }
 }

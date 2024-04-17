@@ -11,6 +11,7 @@
                     <p class="text-xl"><span class="font-semibold">Auteur :</span> <span> {{ book.author }}</span></p>
                     <p class="text-xl"><span class="font-semibold">Catégories :</span> <span>{{ categoriesString }}</span></p>
                     <p class="text-xl max-w-3xl">{{book.resume}}</p>
+                    <a @click="supprime" class="bg-orange-200 hover:bg-orange-500 py-2 px-4 w-48 text-center rounded cursor-pointer transition-all duration-750">Retirer le livre</a>
                 </div>
             </div>
         </div>
@@ -49,6 +50,17 @@ if(token){
         }else if(response === 'false'){
             navigateTo('/introuvable')
         }
+    })
+}
+
+const supprime = async () => {
+    await $fetch(`http://localhost:3333/books/${route.params.id}/destroy`, {
+        method: 'post',
+        headers : {
+            Authorization: `Bearer ${token}`,
+        }
+    }).then(() => {
+        navigateTo('/meslivres')
     })
 }
 
