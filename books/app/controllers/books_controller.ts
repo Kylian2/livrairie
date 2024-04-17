@@ -4,6 +4,8 @@ import Category from '#models/category'
 import { bookValidator } from '#validators/book_category'
 import type { HttpContext } from '@adonisjs/core/http'
 
+import db from '@adonisjs/lucid/services/db'
+
 export default class BooksController {
   /**
    * Display a list of resource
@@ -44,6 +46,8 @@ export default class BooksController {
         bookId: book.id,
         categorieId: idCategorie,
       })
+      console.log(bookCategory)
+      await bookCategory.save()
       return true
     }
     return 'Une erreur est survenue'
@@ -54,12 +58,20 @@ export default class BooksController {
    */
   async show({ auth, params }: HttpContext) {
     const user = auth.getUserOrFail()
-    const id = user.id
-    const book = await Book.query()
-      .preload('user', (u) => u.select('id', 'firstname', 'lastname')) //permet d'inclure à l'emplacement ou l'on fait réference à un user l'objet user.
-      .preload('categories')
-      .where('id', params.id)
-      .where('user_id', id)
+    const userId = user.id
+    const book = await db.rawQuery(
+      `
+        SELECT b.id, title, author, resume, cover, name 
+        FROM books b
+        INNER JOIN book_categories bc ON bc.book_id = b.id
+        INNER JOIN categories c ON bc.categorie_id = c.id
+        WHERE user_id = :user_id and b.id = :book_id`,
+      {
+        user_id: userId,
+        book_id: Number(params.id),
+      }
+    )
+    //.where('id', params.id)
     if (book.length > 0) {
       return book
     } else {
