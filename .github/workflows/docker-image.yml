@@ -45,5 +45,5 @@ jobs:
           context: ./books-front
           file: ./books-front/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}-frontend
+          tags: ${{ steps.meta.outputs.tags }}-front
           labels: ${{ steps.meta.outputs.labels }}
