@@ -40,8 +40,8 @@ jobs:
           file: ./books-front/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:front-latest
-            ghcr.io/${{ github.repository }}:front-${{ github.event.commits[0].sha }}
+            ghcr.io/kylian2/livrairie:front-latest
+            ghcr.io/kylian2/livrairie:front-${{ github.event.commits[0].sha }}
 
       - name: Build and push back-end image
         id: build-and-push-back
@@ -51,5 +51,5 @@ jobs:
           file: ./books/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:back-latest
-            ghcr.io/${{ github.repository }}:back-${{ github.event.commits[0].sha }}
+            ghcr.io/kylian2/livrairie:back-latest
+            ghcr.io/kylian2/livrairie:back-${{ github.event.commits[0].sha }}
