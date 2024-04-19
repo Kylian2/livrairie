@@ -40,8 +40,8 @@ jobs:
           file: ./books-front/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/${{ github.repository | lower }}:front-latest
-            ghcr.io/${{ github.repository_owner }}/${{ github.repository | lower }}:front-${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/${{ toJson(github.repository) | lower }}:front-latest
+            ghcr.io/${{ github.repository_owner }}/${{ toJson(github.repository) | lower }}:front-${{ github.sha }}
 
       - name: Build and push back-end image
         id: build-and-push-back
@@ -51,5 +51,5 @@ jobs:
           file: ./books/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/${{ github.repository | lower }}:back-latest
-            ghcr.io/${{ github.repository_owner }}/${{ github.repository | lower }}:back-${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/${{ toJson(github.repository) | lower }}:back-latest
+            ghcr.io/${{ github.repository_owner }}/${{ toJson(github.repository) | lower }}:back-${{ github.sha }}
