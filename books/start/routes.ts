@@ -11,7 +11,7 @@ import { middleware } from './kernel.js'
 
 router.get('/', async () => {
   return {
-    hello: 'auth-adonis',
+    hello: 'auth-adonis-2',
   }
 })
 
