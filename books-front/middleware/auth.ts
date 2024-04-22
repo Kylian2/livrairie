@@ -1,6 +1,7 @@
 import { getToken } from "~/composable/token";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
+    const config = useRuntimeConfig()
     
     if (process.client) {
 
@@ -15,7 +16,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
         try {
         //verification de la validiter du token
-        const response = await $fetch('http://localhost:3333/islogged', {
+        const response = await $fetch(`${config.public.baseUrl}/islogged`, {
             method: 'get',
             headers: {
             Authorization: `Bearer ${token}`,

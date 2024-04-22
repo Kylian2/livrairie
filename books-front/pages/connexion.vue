@@ -30,8 +30,10 @@ const verifieRequete = () => {
     }
 }
 
+const config = useRuntimeConfig()
+
 const connexion = async () => {
-    await $fetch('http://localhost:3333/login', {
+    await $fetch(`${config.public.baseUrl}/login`, {
         method: 'POST',
         body: {
             'email': email.value,

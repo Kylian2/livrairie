@@ -38,8 +38,10 @@ const verifieRequete = () => {
     }
 }
 
+const config = useRuntimeConfig()
+
 const connexion = async () => {
-    await $fetch('http://localhost:3333/register', {
+    await $fetch(`${config.public.baseUrl}/register`, {
         method: 'POST',
         body: {
             'email': email.value,

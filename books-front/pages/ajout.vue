@@ -36,7 +36,9 @@ definePageMeta({
     middleware: ["auth"]
 })
 
-const categories: Array<object> = await $fetch('http://localhost:3333/categories')
+const config = useRuntimeConfig()
+
+const categories: Array<object> = await $fetch(`${config.public.baseUrl}/categories`)
 
 let title : Ref<string> = useState('title',  () => '')
 let cover : Ref<string> = useState('cover',  () => '')
@@ -59,7 +61,7 @@ const verifieData = () => {
 
 const submit = async () => {
     if(token !== null && verifieData()){
-        await $fetch('http://localhost:3333/books/ajout', {
+        await $fetch(`${config.public.baseUrl}/books/ajout`, {
             method: 'POST',
             headers : {
                 Authorization: `Bearer ${token}`,

@@ -15,11 +15,13 @@ definePageMeta({
 
 let books: Array<Object>;
 
+const config = useRuntimeConfig()
+
 if(process.client){
 
     const token = getToken()
 
-    await $fetch(`http://localhost:3333/books`, {
+    await $fetch(`${config.public.baseUrl}/books`, {
         method: 'get',
         headers : {
             Authorization: `Bearer ${token}`,
