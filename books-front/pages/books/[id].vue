@@ -40,8 +40,11 @@ if(process.client){
     token = getToken()
 
 }
+
+const config = useRuntimeConfig()
+
 if(token){
-    await $fetch(`http://localhost:3333/books/${route.params.id}`, {
+    await $fetch(`${config.public.baseUrl}/books/${route.params.id}`, {
         method: 'get',
         headers : {
             Authorization: `Bearer ${token}`,

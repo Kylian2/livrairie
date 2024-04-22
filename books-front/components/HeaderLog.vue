@@ -15,9 +15,11 @@
 
 import { getToken } from '~/composable/token';
 
+const config = useRuntimeConfig()
+
 const deconnexion = async () => {
     const token = getToken()
-    await $fetch('http://localhost:3333/logout', {
+    await $fetch(`${config.public.baseUrl}/logout`, {
             method: 'post',
             headers: {
             Authorization: `Bearer ${token}`,
