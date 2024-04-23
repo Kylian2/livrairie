@@ -1,6 +1,8 @@
 <template>
     <HeaderLog/>
     <div>
+        <h1 class="text-3xl font-bold mt-12 mb-3 mx-20">Ajouter un livre</h1>
+        <p class="text-l font-semibold mb-12 mx-20">Entrez tout les champs si dessous</p>
         <div class="flex justify-center h-96 items-center gap-32">
             <div class="flex flex-col justify-start gap-2">
                 <label  for="title">Titre:</label>
