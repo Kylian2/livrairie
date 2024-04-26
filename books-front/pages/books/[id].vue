@@ -12,8 +12,8 @@
                     <p class="text-xl"><span class="font-semibold">Catégories :</span> <span>{{ categoriesString }}</span></p>
                     <p class="text-xl max-w-3xl">{{book.resume}}</p>
                     <div class="flex gap-2 mb-5"> 
-                        <a id="supprime" @click="supprime" class="hidden bg-orange-300 hover:bg-orange-500 py-2 px-4 w-48 text-center rounded cursor-pointer transition-all duration-750">Valider</a>
                         <a id="annule" @click="annulation" class="hidden bg-orange-200 hover:bg-orange-400 py-2 px-4 w-48 text-center rounded cursor-pointer transition-all duration-750">Annuler</a>
+                        <a id="supprime" @click="supprime" class="hidden bg-orange-300 hover:bg-orange-500 py-2 px-4 w-48 text-center rounded cursor-pointer transition-all duration-750">Valider</a>
                         <a id="retire" @click="retire" class="bg-orange-200 hover:bg-orange-400 py-2 px-4 w-48 text-center rounded cursor-pointer transition-all duration-750">Retirer le livre</a>
                     </div>
                 </div>
