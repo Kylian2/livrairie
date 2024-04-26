@@ -15,7 +15,7 @@
         <input @keydown.enter="verifieRequete" v-model="password" type="password" id="password" name="password" required class="px-5 py-2 bg-slate-300 border-black border-2 rounded-md">
 
         <button @click="verifieRequete" class="bg-orange-400 rounded-md border-orange-400 px-10 py-2 cursor-pointer my-5 block">S'inscrire</button>
-        <p>Ou <NuxtLink class="italic underline" to="/inscription">connectez-vous</NuxtLink></p>
+        <p>Ou <NuxtLink class="italic underline" to="/connexion">connectez-vous</NuxtLink></p>
     </div>
 </template>
 <script setup lang="ts">
