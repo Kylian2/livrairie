@@ -81,18 +81,31 @@ export default class BooksController {
   async indexByCategory({ auth, params }: HttpContext) {
     const user = auth.getUserOrFail()
     const userId = user.id
-    const books = await db.rawQuery(
-      `
-        SELECT b.id, b.title, b.author, b.cover, b.resume, c.name
-        FROM books b 
-        INNER JOIN book_categories bc ON b.id = bc.book_id 
-        INNER JOIN categories c ON bc.categorie_id = c.id 
-        WHERE c.name = :categorie AND b.user_id = :user_id`,
-      {
-        user_id: userId,
-        categorie: String(params.categorie),
-      }
-    )
+    let books: Array<object>
+    if (params.categorie !== 'all') {
+      books = await db.rawQuery(
+        `
+          SELECT b.id, b.title, b.author, b.cover, b.resume, c.name
+          FROM books b 
+          INNER JOIN book_categories bc ON b.id = bc.book_id 
+          INNER JOIN categories c ON bc.categorie_id = c.id 
+          WHERE c.name = :categorie AND b.user_id = :user_id`,
+        {
+          user_id: userId,
+          categorie: String(params.categorie),
+        }
+      )
+    } else {
+      books = await db.rawQuery(
+        `
+          SELECT b.id, b.title, b.author, b.cover, b.resume
+          FROM books b 
+          WHERE b.user_id = :user_id`,
+        {
+          user_id: userId,
+        }
+      )
+    }
     return books[0]
   }
 

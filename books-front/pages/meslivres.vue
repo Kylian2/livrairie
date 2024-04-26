@@ -2,9 +2,9 @@
     <HeaderLog/>
     <div class="px-20 flex justify-between items-center">
         <h1 class="text-3xl font-bold my-12">Ma Collection</h1>
-        <p>{{ searchCategorie }}</p>
+        <p>{{ ((searchCategorie !== 'all') ? searchCategorie : '' )  }}</p>
         <select @change="searchBooksByCategorie" v-model="searchCategorie" id="category" name="category" required class="px-5 py-2 bg-slate-300 border-black border-2 rounded-md">
-                    <option value="">Toutes les categories</option>
+                    <option value="all">Toutes les categories</option>
                     <option v-for="category in categories" :value="`${category}`">{{category}}</option>
         </select>
     </div>
