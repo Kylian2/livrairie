@@ -80,7 +80,7 @@ const retire = () => {
 }
 
 const supprime = async () => {
-    await $fetch(`http://localhost:3333/books/${route.params.id}/destroy`, {
+    await $fetch(`${config.public.baseUrl}/books/${route.params.id}/destroy`, {
         method: 'post',
         headers : {
             Authorization: `Bearer ${token}`,
