@@ -48,3 +48,11 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}-front
           labels: ${{ steps.meta.outputs.labels }}
+      - name : Deploy new images 
+        uses : appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            echo 'test'
