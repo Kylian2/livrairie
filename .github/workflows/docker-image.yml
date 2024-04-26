@@ -55,4 +55,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            mkdir test
+            docker-compose down
+            docker pull ghcr.io/kylian2/livrairie:main-front
+            docker pull ghcr.io/kylian2/livrairie:main-back
+            docker-compose up -d
